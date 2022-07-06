@@ -1,11 +1,12 @@
 #include <cstring>
+#include <iostream>
 #include "BufferPacker.h"
 
 BufferPacker::BufferPacker(int nCommands) {
     this->totalNCommands = nCommands;
     this->currentNCommands = 0;
 
-    this->buf = new unsigned char[nCommands * N_BYTES_PER_COMMAND];
+    this->buf = new unsigned char[this->getBufferSizeBytes()];
 }
 
 BufferPackerStatus BufferPacker::addCommand(
@@ -41,6 +42,11 @@ uint64_t BufferPacker::getCurrentNCommands() {return this->currentNCommands;}
 uint64_t BufferPacker::getTotalNCommands() {return this->totalNCommands;}
 
 void *BufferPacker::getBuffer() {
+    if (this->currentNCommands < this->totalNCommands) {
+        std::cout << "[BPCK][WARN] getBuffer() called before the buffer was filled, buffer not retrieved." << std::endl;
+        return nullptr;
+    }
+
     return this->buf;
 }
 
@@ -67,4 +73,8 @@ BufferPackerStatus BufferPacker::copyBuffer(void *dest) {
     memcpy(dest, this->buf, this->totalNCommands * N_BYTES_PER_COMMAND);
 
     return SUCCESS;
+}
+
+uint64_t BufferPacker::getBufferSizeBytes() {
+    return (this->totalNCommands * N_BYTES_PER_COMMAND);
 }

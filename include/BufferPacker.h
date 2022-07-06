@@ -49,6 +49,7 @@ public:
 
     uint64_t getCurrentNCommands();
     uint64_t getTotalNCommands();
+    uint64_t getBufferSizeBytes();
     void *getBuffer();
     BufferPackerStatus copyBuffer(void *dest);
 
