@@ -39,7 +39,8 @@ enum BufferPackerStatus{
     FAIL_BUFFER_NOT_FULL,
     FAIL_UNALLOCATED_BUFFER,
     FAIL_INVALID_DEST,
-    SUCCESS
+    SUCCESS_PACK,
+    SUCCESS_CPY
 };
 
 class BufferPacker {

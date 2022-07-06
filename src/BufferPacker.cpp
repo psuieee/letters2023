@@ -34,7 +34,7 @@ BufferPackerStatus BufferPacker::addCommand(
     // increment the number of commands added
     this->currentNCommands++;
 
-    return SUCCESS;
+    return SUCCESS_PACK;
 }
 
 uint64_t BufferPacker::getCurrentNCommands() {return this->currentNCommands;}
@@ -72,7 +72,7 @@ BufferPackerStatus BufferPacker::copyBuffer(void *dest) {
     // copy over buffer
     memcpy(dest, this->buf, this->totalNCommands * N_BYTES_PER_COMMAND);
 
-    return SUCCESS;
+    return SUCCESS_CPY;
 }
 
 uint64_t BufferPacker::getBufferSizeBytes() {
