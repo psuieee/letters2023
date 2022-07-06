@@ -2,11 +2,25 @@
 #include <iostream>
 #include "BufferPacker.h"
 
+using namespace std;
+
 BufferPacker::BufferPacker(int nCommands) {
     this->totalNCommands = nCommands;
     this->currentNCommands = 0;
 
     this->buf = new unsigned char[this->getBufferSizeBytes()];
+}
+
+BufferPacker::BufferPacker(vector<LEDCommand> commands) {
+   
+    this->totalNCommands = commands.size();
+    this->currentNCommands = 0;
+
+    this->buf = new unsigned char[this->getBufferSizeBytes()];
+
+    for (LEDCommand command : commands) {
+        this->addCommand(command);
+    }
 }
 
 BufferPackerStatus BufferPacker::addCommand(
