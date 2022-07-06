@@ -37,6 +37,10 @@ BufferPackerStatus BufferPacker::addCommand(
     return SUCCESS_PACK;
 }
 
+BufferPackerStatus BufferPacker::addCommand(LEDCommand command) {
+    return this->addCommand(command.column, command.row, command.r, command.g, command.b);
+}
+
 uint64_t BufferPacker::getCurrentNCommands() {return this->currentNCommands;}
 
 uint64_t BufferPacker::getTotalNCommands() {return this->totalNCommands;}

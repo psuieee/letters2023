@@ -43,10 +43,16 @@ enum BufferPackerStatus{
     SUCCESS_CPY
 };
 
+struct LEDCommand {
+    uint32_t column, row;
+    uint8_t r, g, b;
+}
+
 class BufferPacker {
 public:
     BufferPacker(int nCommands);
     BufferPackerStatus addCommand(uint32_t column, uint32_t row, uint8_t r, uint8_t g, uint8_t b);
+    BufferPackerStatus addCommand(LEDCommand command);
 
     uint64_t getCurrentNCommands();
     uint64_t getTotalNCommands();
