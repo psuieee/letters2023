@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(LetterCore LANGUAGES C CXX)
+project(LetterCore)
 
 set(SOURCE
         src/main.cpp
-        src/BufferPacker.cpp include/BufferPacker.h
-        src/CommandSender.cpp src/CommandSender.h
+        src/BufferPacker.cpp
+        src/CommandSender.cpp
         )
 
 include_directories(include)
