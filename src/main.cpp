@@ -12,6 +12,5 @@ int main(int argc, char **argv) {
     bp.addCommand(1, 1, 255, 0, 0);
     bp.addCommand(1, 0, 0, 255, 0);
 
-
     return 0;
 }
