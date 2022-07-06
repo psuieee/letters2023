@@ -1,4 +1,7 @@
 # cmake
 CMakeFiles
 cmake-build-debug
+build
+
+# intellij
 .idea
