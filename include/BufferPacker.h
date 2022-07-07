@@ -26,6 +26,8 @@
 #include <cstdint>
 #include <vector>
 
+#include "LEDCommand.h"
+
 #define N_BYTES_PER_COMMAND 11
 
 #define BYTE_COLUMN         0
@@ -42,11 +44,6 @@ enum BufferPackerStatus{
     FAIL_INVALID_DEST,
     SUCCESS_PACK,
     SUCCESS_CPY
-};
-
-struct LEDCommand {
-    uint32_t column, row;
-    uint8_t r, g, b;
 };
 
 class BufferPacker {
