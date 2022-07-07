@@ -16,8 +16,8 @@ int main(int argc, char **argv) {
             newCommand.column = c;
             newCommand.row = r;
 
-            newCommand.r = 0;
-            newCommand.g = c * 7;
+            newCommand.r = c * 7;
+            newCommand.g = 0;
             newCommand.b = r * 7;
 
             commands.push_back(newCommand);
@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
 
     CommandSender cs("192.168.0.35", 10000);
 
-    cout << int(cs.sendBuffer((unsigned char *) bp.getBuffer(), bp.getBufferSizeBytes())) << endl;
+    cs.sendBuffer((unsigned char *) bp.getBuffer(), bp.getBufferSizeBytes());
 
     return 0;
 }
