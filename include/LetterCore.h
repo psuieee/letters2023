@@ -1,0 +1,6 @@
+class LetterCore {
+public:
+
+private:
+
+};
