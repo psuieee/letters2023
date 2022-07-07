@@ -37,12 +37,14 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 '''
 
+from concurrent.futures import thread
 from select import select
 from time import sleep
 from tkinter import X
 import PySimpleGUI as pg
 import socket
 import argparse
+import threading
 
 parser = argparse.ArgumentParser(
     description='Simulate an MxN RGB LED matrix, addressable over TCP'
@@ -101,8 +103,8 @@ sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 sock.listen(1)
 print('[TCP] Done')
 
-def tcpUpdateThread():
-    readable, writable, errored = select([sock], [], [])
+def tcpUpdateCheck():
+    readable, writable, errored = select([sock], [], [], 0)
 
     for sck in readable:
         if sck is sock:
@@ -147,9 +149,6 @@ def tcpUpdateThread():
             
             conn.close()
 
-# start update listener thread
-window.perform_long_operation(tcpUpdateThread, '-OPERATION DONE-')
-
 # main loop
 while True:
     
@@ -167,11 +166,12 @@ while True:
     
     lightboard.update()
     window.refresh()
-    event, _ = window.read() 
+    event, _ = window.read(timeout=0) 
 
     if event == pg.WIN_CLOSED:
         print('[MAIN] Exiting...')
         exit()
 
-    sleep(0.001)
+    tcpUpdateCheck()
 
+    sleep(0.001)
