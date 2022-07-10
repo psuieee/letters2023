@@ -6,6 +6,7 @@ set(SOURCE
         src/main.cpp
         src/BufferPacker.cpp
         src/CommandSender.cpp
+        src/Pattern.cpp
         )
 
 include_directories(include)

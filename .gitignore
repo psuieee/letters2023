@@ -5,3 +5,6 @@ build
 
 # intellij
 .idea
+
+# vscode
+.vscode
