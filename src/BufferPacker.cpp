@@ -52,7 +52,7 @@ BufferPackerStatus BufferPacker::addCommand(
 }
 
 BufferPackerStatus BufferPacker::addCommand(LEDCommand command) {
-    return this->addCommand(command.column, command.row, command.r, command.g, command.b);
+    return this->addCommand(command.col, command.row, command.r, command.g, command.b);
 }
 
 uint64_t BufferPacker::getCurrentNCommands() {return this->currentNCommands;}

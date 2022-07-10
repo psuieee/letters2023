@@ -11,6 +11,7 @@ LetterCore::LetterCore(const char *ip, int port, std::vector<Pattern*> initialPa
 }
 
 void LetterCore::addPattern(Pattern* pattern) {
+    this->nTotalPatterns++;
     this->patterns.push_back(pattern);
 }
 
@@ -32,8 +33,13 @@ int LetterCore::setActivePatternIdx(int i) {
     return this->activePatternIdx;
 }
 
-void LetterCore::step(uint32_t timeSeconds, uint16_t timeMilliseconds) {
-    std::vector<LEDCommand> commands = this->patterns[this->activePatternIdx]->step(timeSeconds, timeMilliseconds);
+void LetterCore::step(std::chrono::milliseconds ms) {
+
+    std::vector<LEDCommand> commands = this->patterns[this->activePatternIdx]->step(ms);
+
+    if (commands.size() == 0) {
+        return;
+    }
 
     BufferPacker bp(commands);
 

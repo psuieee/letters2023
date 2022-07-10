@@ -17,11 +17,11 @@ public:
     int setActivePatternIdx(int i); // change pattern to a specific pattern
     int getActivePatternIdx();
 
-    void step(uint32_t timeSeconds, uint16_t timeMilliseconds); // calls step() of active pattern
+    void step(std::chrono::milliseconds ms); // calls step() of active pattern
 
 private:
-    int nTotalPatterns;
-    int activePatternIdx;
+    int nTotalPatterns = 0;
+    int activePatternIdx = 0;
 
     std::vector<Pattern*> patterns;
 

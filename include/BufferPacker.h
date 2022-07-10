@@ -63,8 +63,8 @@ public:
 
 
 private:
-    uint64_t currentNCommands;
-    uint64_t totalNCommands;
+    uint64_t currentNCommands = 0;
+    uint64_t totalNCommands = 0;
     void *buf;
 };
 

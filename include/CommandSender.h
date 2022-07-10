@@ -21,5 +21,8 @@ public:
 
 private:
     struct sockaddr_in addr;    
+    int sock;
+
+    void setSock();
 
 };

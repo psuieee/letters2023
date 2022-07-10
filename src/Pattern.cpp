@@ -1,8 +1,9 @@
 #include "Pattern.h"
 
-Pattern::Pattern() : Pattern(0, 0) {}
+using namespace std::chrono;
 
-Pattern::Pattern(uint32_t startTimeSeconds, uint16_t startTimeMilliseconds) {
-    this->seconds = startTimeSeconds;
-    this->milliseconds = startTimeMilliseconds;
+Pattern::Pattern() : Pattern(milliseconds(0)) {}
+
+Pattern::Pattern(milliseconds startMs) {
+    this->ms = startMs;
 }

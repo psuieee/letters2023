@@ -13,10 +13,12 @@ CommandSender::CommandSender(const char *ip, int port) {
 BufferSendStatus CommandSender::sendBuffer(unsigned char *buf, uint64_t bufSizeBytes) {
 
     // variables
+    int one = 1;
     int sock, client_fd, nSent;
 
     // make socket
     sock = socket(AF_INET, SOCK_STREAM, 0);
+    setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &one, sizeof(int));
 
     // check socket
     if (sock < 0) {
@@ -38,6 +40,9 @@ BufferSendStatus CommandSender::sendBuffer(unsigned char *buf, uint64_t bufSizeB
     if (nSent < 0) {
         return FAIL_SEND;
     }
+
+    shutdown(client_fd, SHUT_RDWR);
+    shutdown(sock, SHUT_RDWR);
 
     return SUCCESS_SEND;
 }

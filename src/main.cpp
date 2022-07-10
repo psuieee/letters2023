@@ -1,34 +1,27 @@
 #include <iostream>
+#include <chrono>
 
-#include "BufferPacker.h"
-#include "CommandSender.h"
+#include "LetterCore.h"
+#include "patterns/TestPattern.h"
 
 using namespace std;
 
 int main(int argc, char **argv) {
 
-    vector<LEDCommand> commands;
+    std::vector<Pattern*> patterns;
 
-    for (int c = 0; c < 32; c++) {
-        for (int r = 0; r < 32; r++) {
-            LEDCommand newCommand;
+    patterns.push_back(new TestPattern(32, 32));
 
-            newCommand.column = c;
-            newCommand.row = r;
+    LetterCore core("192.168.0.2", 10000, patterns);
 
-            newCommand.r = c * 7;
-            newCommand.g = 0;
-            newCommand.b = r * 7;
+    while (true) {
+        std::chrono::milliseconds s = std::chrono::duration_cast<std::chrono::milliseconds>(
+            std::chrono::system_clock::now().time_since_epoch()
+            );
 
-            commands.push_back(newCommand);
-        }
+        core.step(s);
     }
-
-    BufferPacker bp(commands);
-
-    CommandSender cs("192.168.0.35", 10000);
-
-    cs.sendBuffer((unsigned char *) bp.getBuffer(), bp.getBufferSizeBytes());
+    
 
     return 0;
 }
