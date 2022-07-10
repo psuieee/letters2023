@@ -7,6 +7,7 @@ set(SOURCE
         src/BufferPacker.cpp
         src/CommandSender.cpp
         src/Pattern.cpp
+        src/LetterCore.cpp
         )
 
 include_directories(include)

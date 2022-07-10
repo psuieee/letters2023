@@ -9,9 +9,9 @@
 class LetterCore {
 public:
     LetterCore(const char *ip, int port);
-    LetterCore(const char *ip, int port, std::vector<Pattern> initialPatterns);
+    LetterCore(const char *ip, int port, std::vector<Pattern*> initialPatterns);
 
-    void addPattern();
+    void addPattern(Pattern* pattern);
 
     int nextPattern(); // go to the next pattern
     int setActivePatternIdx(int i); // change pattern to a specific pattern
@@ -23,7 +23,7 @@ private:
     int nTotalPatterns;
     int activePatternIdx;
 
-    std::vector<Pattern> patterns;
+    std::vector<Pattern*> patterns;
 
     CommandSender commandSender;
 };
