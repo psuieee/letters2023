@@ -13,10 +13,14 @@ LightCore::LightCore(uint16_t newWidth, uint16_t newHeight)
 }
 
 void LightCore::tick(milliseconds newMs) {
+
+  // get updates from the pattern
   std::vector<PixelState> updates = this->patterns[this->activePatternIdx]->tick(newMs);
 
+  // update the matrix state
   this->state.updateState(updates);
 
+  // have the lights reflect the matrix state
   this->interface.draw();
 }
 
@@ -24,13 +28,20 @@ void LightCore::addPattern(Pattern* newPattern) {
   this->patterns.push_back(newPattern);
 }
 
-void LightCore::start() {
+void LightCore::run() {
   while (true) {
-        milliseconds newms = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
+      // check the time
+      milliseconds newms = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
 
-        if ((newms - this->ms).count() > MS_PER_TICK) {
-            this->ms = newms;
-            this->tick(this->ms);
-        }
+      // go to next pattern, if necessary
+      if ((newms - this->msSinceLastPatternChange).count() > MS_PER_PATTERN_CHANGE) {
+        this->msSinceLastPatternChange = milliseconds(0);
+      }
+
+      // tick if necessary
+      if ((newms - this->ms).count() > MS_PER_TICK) {
+          this->ms = newms;
+          this->tick(this->ms);
+      }
     }
 }

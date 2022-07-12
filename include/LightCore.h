@@ -9,6 +9,7 @@
 
 #define DEFAULT_WIDTH   10
 #define DEFAULT_HEIGHT  10
+#define MS_PER_PATTERN_CHANGE 5000
 #define TPS 120
 
 #define MS_PER_TICK (1/(TPS * 0.001))
@@ -17,7 +18,7 @@ class LightCore {
 private:
     uint8_t activePatternIdx;
     const uint16_t width, height;
-    std::chrono::milliseconds ms;
+    std::chrono::milliseconds ms, msSinceLastPatternChange;
     MatrixState state;
     LightInterface interface;
     std::vector<Pattern*> patterns;
@@ -28,7 +29,7 @@ public:
     void tick(std::chrono::milliseconds newMs);
     void addPattern(Pattern* newPattern);
 
-    void start();
+    void run();
 
     uint8_t getActivePatternIdx() {
         return this->activePatternIdx;

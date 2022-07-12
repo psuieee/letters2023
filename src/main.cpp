@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
 
     lc.addPattern(&tp);
 
-    lc.start();
+    lc.run();
 
     return 0;
 }
