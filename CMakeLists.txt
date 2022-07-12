@@ -7,7 +7,6 @@ set(SOURCE
         src/LightCore.cpp
         src/MatrixState.cpp
         src/LightInterface.cpp
-        src/Pattern.cpp
         )
 
 include_directories(include)

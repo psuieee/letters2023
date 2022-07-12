@@ -5,7 +5,6 @@
 
 #include "MatrixState.h"
 #include "LightInterface.h"
-#include "Pattern.h"
 
 #define DEFAULT_WIDTH   10
 #define DEFAULT_HEIGHT  10
@@ -16,29 +15,15 @@
 
 class LightCore {
 private:
-    uint8_t activePatternIdx;
     const uint16_t width, height;
-    std::chrono::milliseconds ms, msSinceLastPatternChange;
+    std::chrono::milliseconds ms;
     MatrixState state;
     LightInterface interface;
-    std::vector<Pattern*> patterns;
 public:
     LightCore();
     LightCore(uint16_t newWidth, uint16_t newHeight);
 
     void tick(std::chrono::milliseconds newMs);
-    void addPattern(Pattern* newPattern);
 
     void run();
-
-    uint8_t getActivePatternIdx() {
-        return this->activePatternIdx;
-    };
-    void nextPattern() {
-        if ((this->activePatternIdx + 1) < this->patterns.size()) {
-            this->activePatternIdx++;
-        } else {
-            this->activePatternIdx = 0;
-        }
-    }
 };
