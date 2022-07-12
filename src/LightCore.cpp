@@ -13,5 +13,9 @@ LightCore::LightCore(uint16_t newWidth, uint16_t newHeight)
 }
 
 void LightCore::tick(milliseconds newMs) {
+  std::vector<PixelState> updates;
 
+  this->state.updateState(updates);
+
+  this->interface.draw();
 }

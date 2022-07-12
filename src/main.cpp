@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 
 #include "LightCore.h"
 
@@ -10,6 +11,10 @@ using namespace std;
 int main(int argc, char **argv) {
 
     LightCore lc(LC_WIDTH, LC_HEIGHT);
+
+    while (true) {
+        lc.tick(std::chrono::milliseconds(0));
+    }
 
     return 0;
 }

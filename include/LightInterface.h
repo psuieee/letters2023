@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <opencv2/opencv.hpp>
 
 #include "MatrixState.h"
 
@@ -12,6 +13,7 @@ public:
 
 private:
     const uint16_t width, height;
-    const MatrixState* state;
+    MatrixState* state;
 
+    cv::Mat image;
 };

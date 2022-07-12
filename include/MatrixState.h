@@ -18,5 +18,5 @@ public:
 
 private:
     const uint16_t width, height;
-    Color **state; // state[y][x]
+    std::vector<std::vector<Color>> state;
 };
