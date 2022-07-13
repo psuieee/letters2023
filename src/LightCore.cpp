@@ -8,7 +8,13 @@ LightCore::LightCore(uint16_t newWidth, uint16_t newHeight)
       state(newWidth, newHeight), 
       interface(newWidth, newHeight, &state)
       {
-  this->ms = milliseconds(0);
+  
+  milliseconds currTime = duration_cast<milliseconds>(
+        system_clock::now().time_since_epoch()
+        );
+  
+  this->msAtLastTick = currTime;
+  this->msAtLastPatternChange = currTime;
 }
 
 void LightCore::tick(milliseconds newMs) {
@@ -30,10 +36,16 @@ void LightCore::run() {
         system_clock::now().time_since_epoch()
         );
 
+      // switch patterns if necessary
+      if ((newms - this->msAtLastPatternChange).count() > MS_PER_PATT_CHANGE) {
+        this->msAtLastPatternChange = newms;
+        this->nextPattern();
+      }
+
       // tick if necessary
-      if ((newms - this->ms).count() > MS_PER_TICK) {
-          this->ms = newms;
-          this->tick(this->ms);
+      if ((newms - this->msAtLastTick).count() > MS_PER_TICK) {
+          this->msAtLastTick = newms;
+          this->tick(this->msAtLastTick);
       }
     }
 }

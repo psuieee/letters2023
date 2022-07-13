@@ -10,11 +10,12 @@
 #define TPS 60
 
 #define MS_PER_TICK (1/(TPS * 0.001))
+#define MS_PER_PATT_CHANGE 5000
 
 class LightCore {
 private:
     const uint16_t width, height;
-    std::chrono::milliseconds ms;
+    std::chrono::milliseconds msAtLastTick, msAtLastPatternChange;
     MatrixState state;
     LightInterface interface;
 

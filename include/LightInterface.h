@@ -5,8 +5,8 @@
 
 #include "MatrixState.h"
 
-#define LIGHTBOARD_WIDTH_PX 500
-#define LIGHTBOARD_HEIGHT_PX LIGHTBOARD_WIDTH_PX
+#define LIGHTBOARD_WIDTH_PX     500
+#define LIGHTBOARD_HEIGHT_PX    500
 
 class LightInterface {
 public:
