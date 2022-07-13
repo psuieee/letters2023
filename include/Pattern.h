@@ -11,7 +11,6 @@ public:
     Pattern(uint16_t newWidth, uint16_t newHeight) {
         this->width = newWidth;
         this->height = newHeight;
-
     };
 
     std::vector<PixelState> tick(std::chrono::milliseconds newms) {

@@ -2,6 +2,13 @@
 
 using namespace cv;
 
+/**
+ * @brief LightInterface constructor
+ * 
+ * @param newWidth  width of matrix in # of leds
+ * @param newHeight height of matrix in # of leds
+ * @param newState  pointer to matrix state object
+ */
 LightInterface::LightInterface(
     uint16_t newWidth, uint16_t newHeight, MatrixState* newState) : 
     width{newWidth},
@@ -12,6 +19,12 @@ LightInterface::LightInterface(
     namedWindow("LightBoard", WINDOW_AUTOSIZE );
 }
 
+/**
+ * @brief Draw
+ * 
+ * Updates lights using the MatrixState
+ * 
+ */
 void LightInterface::draw() {
     // update image with matrix state
     PixelState p;

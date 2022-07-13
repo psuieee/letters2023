@@ -8,7 +8,6 @@
 class MatrixState {
 public:
     MatrixState(uint16_t width, uint16_t height);
-    ~MatrixState();
 
     void updateState(std::vector<PixelState> updates);
 

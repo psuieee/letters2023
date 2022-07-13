@@ -18,16 +18,20 @@ using namespace std::chrono;
 
 int main(int argc, char **argv) {
 
+    // declare patterns
     TestPattern tp(LC_WIDTH, LC_HEIGHT);
     AllWhite aw(LC_WIDTH, LC_HEIGHT);
     TVStatic st(LC_WIDTH, LC_HEIGHT);
 
+    // declare the core
     LightCore lc(LC_WIDTH, LC_HEIGHT, LC_TPS, LC_MS_PATT);
 
+    // add the patterns
     lc.addPattern(&tp);
     lc.addPattern(&aw);
     lc.addPattern(&st);
 
+    // set the core running
     lc.run();
 
     return 0;
