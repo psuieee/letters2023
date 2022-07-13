@@ -2,15 +2,13 @@
 
 using namespace std::chrono;
 
-LightCore::LightCore(uint16_t newWidth, uint16_t newHeight, uint8_t newNPatterns) 
+LightCore::LightCore(uint16_t newWidth, uint16_t newHeight) 
     : width{newWidth}, 
       height{newHeight}, 
       state(newWidth, newHeight), 
       interface(newWidth, newHeight, &state)
       {
   this->ms = milliseconds(0);
-  this->totalNPatterns = newNPatterns;
-  this->patterns = new Pattern* [newNPatterns];
 }
 
 void LightCore::tick(milliseconds newMs) {
@@ -40,8 +38,8 @@ void LightCore::run() {
     }
 }
 
-void LightCore::setPattern(Pattern *pattern, uint8_t idx) {
-  this->patterns[idx] = pattern;
+void LightCore::addPattern(Pattern *pattern) {
+  this->patterns.push_back(pattern);
 }
 
 void LightCore::setCurrPattern(uint8_t idx) {
@@ -49,7 +47,7 @@ void LightCore::setCurrPattern(uint8_t idx) {
 }
 
 void LightCore::nextPattern() {
-  if (this->currPatternIdx + 1 < this->totalNPatterns) {
+  if (this->currPatternIdx + 1 < this->patterns.size()) {
     this->currPatternIdx++;
   } else {
     this->currPatternIdx = 0;

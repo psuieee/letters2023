@@ -14,9 +14,9 @@ int main(int argc, char **argv) {
 
     TestPattern tp(LC_WIDTH, LC_HEIGHT);
 
-    LightCore lc(LC_WIDTH, LC_HEIGHT, 1);
+    LightCore lc(LC_WIDTH, LC_HEIGHT);
 
-    lc.setPattern(&tp, 0);
+    lc.addPattern(&tp);
 
     lc.run();
 
