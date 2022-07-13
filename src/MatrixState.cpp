@@ -4,7 +4,10 @@ MatrixState::MatrixState(uint16_t newWidth, uint16_t newHeight)
     : width{newWidth}, height{newHeight} {
 
     // make state array
-    this->state = std::vector<std::vector<Color>>(this->height, std::vector<Color>(this->width, Color{0, 0, 0}));
+    this->state = std::vector<std::vector<Color>>(
+        this->height, 
+        std::vector<Color>(this->width, Color{0, 0, 0})
+        );
 
 }
 

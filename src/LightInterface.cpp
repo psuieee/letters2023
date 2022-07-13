@@ -8,7 +8,9 @@ LightInterface::LightInterface(
     height{newHeight},
     state{newState},
     image(newHeight, newWidth, CV_8UC3, Scalar(0, 0, 0))
-    {}
+{       
+    namedWindow("LightBoard", WINDOW_AUTOSIZE );
+}
 
 void LightInterface::draw() {
     // update image with matrix state
@@ -21,10 +23,9 @@ void LightInterface::draw() {
     }
 
     Mat scaledImage;
-    resize(image, scaledImage, Size(100, 100));
+    resize(image, scaledImage, Size(LIGHTBOARD_WIDTH_PX, LIGHTBOARD_HEIGHT_PX));
 
-    // show image 
-    namedWindow("LightBoard", WINDOW_AUTOSIZE );
+    // show image
     imshow("LightBoard", scaledImage);
 
     waitKey(1);

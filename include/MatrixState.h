@@ -14,7 +14,7 @@ public:
 
     // state getters
     std::vector<PixelState> getState();
-    PixelState getState(uint16_t x, uint16_t y);
+    PixelState              getState(uint16_t x, uint16_t y);
 
 private:
     const uint16_t width, height;

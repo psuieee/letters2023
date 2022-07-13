@@ -5,10 +5,8 @@
 
 #include "MatrixState.h"
 #include "LightInterface.h"
+#include "Pattern.h"
 
-#define DEFAULT_WIDTH   10
-#define DEFAULT_HEIGHT  10
-#define MS_PER_PATTERN_CHANGE 5000
 #define TPS 120
 
 #define MS_PER_TICK (1/(TPS * 0.001))
@@ -19,11 +17,19 @@ private:
     std::chrono::milliseconds ms;
     MatrixState state;
     LightInterface interface;
-public:
-    LightCore();
-    LightCore(uint16_t newWidth, uint16_t newHeight);
+
+    Pattern **patterns;
+    uint8_t totalNPatterns;
+    uint8_t currPatternIdx = 0;
 
     void tick(std::chrono::milliseconds newMs);
 
+public:
+    LightCore(uint16_t newWidth, uint16_t newHeight, uint8_t newNPatterns);
     void run();
+
+    void setPattern(Pattern *pattern, uint8_t idx);
+
+    void setCurrPattern(uint8_t idx);
+    void nextPattern();
 };

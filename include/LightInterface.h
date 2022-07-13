@@ -5,6 +5,9 @@
 
 #include "MatrixState.h"
 
+#define LIGHTBOARD_WIDTH_PX 500
+#define LIGHTBOARD_HEIGHT_PX LIGHTBOARD_WIDTH_PX
+
 class LightInterface {
 public:
     LightInterface(uint16_t newWidth, uint16_t newHeight, MatrixState* state);
