@@ -7,7 +7,7 @@
 #include "LightInterface.h"
 #include "Pattern.h"
 
-#define TPS 120
+#define TPS 60
 
 #define MS_PER_TICK (1/(TPS * 0.001))
 

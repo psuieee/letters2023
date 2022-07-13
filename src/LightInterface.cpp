@@ -18,7 +18,7 @@ void LightInterface::draw() {
     for (int y = 0; y < this->height; y++) {
         for (int x = 0; x < this->width; x++) {
             p = this->state->getState(x, y);
-            this->image.at<Vec3b>(Point(x, y)) = Vec3b(p.color.r, p.color.g, p.color.b);
+            this->image.at<Vec3b>(Point(x, y)) = Vec3b(p.color.b, p.color.g, p.color.r);
         }
     }
 
