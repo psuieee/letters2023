@@ -7,14 +7,12 @@
 #include "LightInterface.h"
 #include "Pattern.h"
 
-#define TPS 60
-
-#define MS_PER_TICK (1/(TPS * 0.001))
-#define MS_PER_PATT_CHANGE 5000
+#define MS_PER_TICK(X) (1/(X * 0.001))
 
 class LightCore {
 private:
     const uint16_t width, height;
+    const uint32_t tps, msPerPattern;
     std::chrono::milliseconds msAtLastTick, msAtLastPatternChange;
     MatrixState state;
     LightInterface interface;
@@ -25,7 +23,7 @@ private:
     void tick(std::chrono::milliseconds newMs);
 
 public:
-    LightCore(uint16_t newWidth, uint16_t newHeight);
+    LightCore(uint16_t newWidth, uint16_t newHeight, uint32_t newTPS, uint32_t newMsPerPattern);
     void run();
 
     void addPattern(Pattern *pattern);
