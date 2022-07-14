@@ -72,6 +72,8 @@ void LightCore::run() {
           this->msAtLastTick = newms;
           this->tick(this->msAtLastTick);
       }
+
+      std::this_thread::sleep_for(milliseconds(1));
     }
 }
 
