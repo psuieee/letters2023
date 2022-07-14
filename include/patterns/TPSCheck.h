@@ -14,7 +14,7 @@ public:
 
         Color white = Color(255, 255, 255);
         Color black = Color(0, 0, 0);
-        
+
         for (int x = 0; x < this->width; x++) {
             p.x = x;
 
