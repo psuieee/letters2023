@@ -11,7 +11,7 @@
 #define LC_WIDTH    32
 #define LC_HEIGHT   32
 #define LC_TPS      30
-#define LC_MS_PATT  5000
+#define LC_MS_PATT  60000
 
 using namespace std;
 using namespace std::chrono;
