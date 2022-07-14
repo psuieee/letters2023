@@ -4,9 +4,6 @@ project(LightCore)
 
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)
-
-set(CMAKE_CXX_FLAGS "-fopenmp")
-
 set(SOURCE
         src/main.cpp
         src/LightCore.cpp
