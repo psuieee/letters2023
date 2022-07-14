@@ -70,7 +70,10 @@ void LightCore::run() {
       // tick if necessary
       if ((newms - this->msAtLastTick).count() > MS_PER_TICK(this->tps)) {
           this->msAtLastTick = newms;
-          this->tick(this->msAtLastTick);
+
+          std::thread tickThread(&LightCore::tick, this, this->msAtLastTick);
+          tickThread.detach();
+          //this->tick(this->msAtLastTick);
       }
 
       std::this_thread::sleep_for(milliseconds(1));
