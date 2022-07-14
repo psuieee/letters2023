@@ -4,7 +4,8 @@ project(LightCore)
 
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)
-find_package(Threads REQUIRED)
+
+set(CMAKE_CXX_FLAGS "-fopenmp")
 
 set(SOURCE
         src/main.cpp
@@ -16,9 +17,11 @@ set(SOURCE
 include_directories(include)
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 
-find_package( OpenCV REQUIRED )
 
-add_executable(lightcore ${SOURCE})
+find_package(Threads REQUIRED)
+find_package(OpenCV REQUIRED)
 
-target_link_libraries( lightcore ${OpenCV_LIBS} )
-target_link_libraries( lightcore Threads::Threads)
+add_executable(LightCore ${SOURCE})
+
+target_link_libraries(LightCore ${OpenCV_LIBS} )
+target_link_libraries(LightCore Threads::Threads)

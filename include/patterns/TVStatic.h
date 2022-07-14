@@ -12,6 +12,7 @@ public:
         vector<PixelState> updates;
         PixelState p;
 
+        #pragma omp parallel for collapse(2)
         for (int y = 0; y < this->height; y++) {
             for (int x = 0; x < this->width; x++) {
                 PixelState p;
@@ -29,6 +30,7 @@ public:
                     p.color.b = 0;
                 }
 
+                #pragma omp critical
                 updates.push_back(p);
             }
         }
