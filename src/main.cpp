@@ -12,7 +12,7 @@
 #define LC_WIDTH    32
 #define LC_HEIGHT   32
 #define LC_TPS      30
-#define LC_MS_PATT  60000
+#define LC_MS_PATT  5000
 
 using namespace std;
 using namespace std::chrono;
@@ -22,7 +22,6 @@ int main(int argc, char **argv) {
     // declare patterns
     TPSCheck tc(LC_WIDTH, LC_HEIGHT);
     TestPattern tp(LC_WIDTH, LC_HEIGHT);
-    AllWhite aw(LC_WIDTH, LC_HEIGHT);
     TVStatic st(LC_WIDTH, LC_HEIGHT);
 
     // declare the core
@@ -31,7 +30,6 @@ int main(int argc, char **argv) {
     // add the patterns
     lc.addPattern(&tc);
     lc.addPattern(&tp);
-    lc.addPattern(&aw);
     lc.addPattern(&st);
 
     // set the core running
