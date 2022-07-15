@@ -55,6 +55,7 @@ void LightCore::tick(milliseconds newMs) {
  * 
  */
 void LightCore::run() {
+  #pragma omp parallel
   while (true) {
       // check the time
       milliseconds newms = duration_cast<milliseconds>(
