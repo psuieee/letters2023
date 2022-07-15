@@ -19,11 +19,12 @@ public:
     };
 
     vector<PixelState> getUpdates() {
-        uint32_t fullTarget;
+        uint32_t partialTarget, fullTarget;
 
         for (int y = 0; y < this->height; y++) {
+            partialTarget = y * this->height;
             for (int x = 0; x < this->width; x++) {
-                fullTarget = (y * this->height) + x;
+                fullTarget = partialTarget + x;
 
                 if ((rand() % 2) == 0) {
                     this->updates[fullTarget].color = white;
