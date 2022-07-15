@@ -7,6 +7,7 @@
 #include "patterns/TestPattern.h"
 #include "patterns/AllWhite.h"
 #include "patterns/TVStatic.h"
+#include "patterns/TPSTest.h"
 
 #define LC_WIDTH    32
 #define LC_HEIGHT   32
@@ -19,6 +20,7 @@ using namespace std::chrono;
 int main(int argc, char **argv) {
 
     // declare patterns
+    TPSTest tt(LC_WIDTH, LC_HEIGHT);
     TestPattern tp(LC_WIDTH, LC_HEIGHT);
     TVStatic st(LC_WIDTH, LC_HEIGHT);
 
@@ -26,6 +28,7 @@ int main(int argc, char **argv) {
     LightCore lc(LC_WIDTH, LC_HEIGHT, LC_TPS, LC_MS_PATT);
 
     // add the patterns
+    lc.addPattern(&tt);
     lc.addPattern(&tp);
     lc.addPattern(&st);
 
