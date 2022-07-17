@@ -12,6 +12,7 @@ public:
         this->leftWhite = !this->leftWhite;
 
         if (leftWhite) {
+            #pragma omp parallel for
             for (int y = 0; y < this->height; y++) {
                 for (int x = 0; x < (this->width / 2); x++) {
                     this->state[y * this->height + x] = white;
@@ -21,6 +22,7 @@ public:
                 }
             }
         } else {
+            #pragma omp parallel for
             for (int y = 0; y < this->height; y++) {
                 for (int x = 0; x < (this->width / 2); x++) {
                     this->state[y * this->height + x] = black;
