@@ -27,11 +27,14 @@ LightInterface::LightInterface(
  */
 void LightInterface::draw() {
     // update image with matrix state
-    PixelState p;
-    for (int y = 0; y < this->height; y++) {
-        for (int x = 0; x < this->width; x++) {
-            p = this->state->getState(x, y);
-            this->image.at<Vec3b>(Point(x, y)) = Vec3b(p.color.b, p.color.g, p.color.r);
+    Color *c = this->state->getState();
+    for (uint16_t y = 0; y < this->height; y++) {
+        for (uint16_t x = 0; x < this->width; x++) {
+            this->image.at<Vec3b>(Point(x, y)) = Vec3b(
+                c[y * this->state->height + x].b,
+                c[y * this->state->height + x].g,
+                c[y * this->state->height + x].r
+                );
         }
     }
 

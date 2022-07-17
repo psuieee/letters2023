@@ -38,7 +38,7 @@ LightCore::LightCore(uint16_t newWidth, uint16_t newHeight, uint32_t newTPS, uin
 void LightCore::tick(milliseconds newMs) {
 
   // get updates from the pattern
-  std::vector<PixelState> updates = this->patterns[this->currPatternIdx]->tick(newMs);
+  Color * updates = this->patterns[this->currPatternIdx]->tick(newMs);
 
   // update the matrix state
   this->state.updateState(updates);

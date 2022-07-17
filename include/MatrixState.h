@@ -4,19 +4,19 @@
 #include <vector>
 #include <stdlib.h>
 
-#include "PixelState.h"
+#include "Color.h"
 
 class MatrixState {
 public:
     MatrixState(uint16_t width, uint16_t height);
 
-    void updateState(std::vector<PixelState> updates);
+    void updateState(Color *newState);
 
     // state getters
-    std::vector<PixelState> getState();
-    PixelState              getState(uint16_t x, uint16_t y);
+    Color * getState();
+
+    const uint16_t width, height;
 
 private:
-    const uint16_t width, height;
     Color *state;
 };

@@ -3,8 +3,9 @@
 #include <cstdint>
 #include <vector>
 #include <chrono>
+#include <stdlib.h>
 
-#include "PixelState.h"
+#include "Color.h"
 
 class Pattern {
 public:
@@ -13,14 +14,14 @@ public:
         this->height = newHeight;
     };
 
-    std::vector<PixelState> tick(std::chrono::milliseconds newms) {
+    Color * tick(std::chrono::milliseconds newms) {
         this->ms = newms;
 
         return getUpdates();
     }
 
 protected:
-    virtual std::vector<PixelState> getUpdates() = 0;
+    virtual Color * getUpdates() = 0;
 
     std::chrono::milliseconds ms;
     uint16_t width, height;
