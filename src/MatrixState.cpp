@@ -9,12 +9,7 @@
 MatrixState::MatrixState(uint16_t newWidth, uint16_t newHeight) 
     : width{newWidth}, height{newHeight} {
 
-    // make state array
-    this->state = std::vector<std::vector<Color>>(
-        this->height, 
-        std::vector<Color>(this->width, Color{0, 0, 0})
-        );
-
+    this->state = new Color[this->height * this->width];
 }
 
 /**
@@ -24,7 +19,7 @@ MatrixState::MatrixState(uint16_t newWidth, uint16_t newHeight)
  */
 void MatrixState::updateState(std::vector<PixelState> updates) {
     for (PixelState update : updates) {
-        (this->state)[update.y][update.x] = update.color;
+        (this->state)[update.y * this->height + update.x] = update.color;
     }
 }
 
@@ -57,7 +52,7 @@ PixelState MatrixState::getState(uint16_t x, uint16_t y) {
 
     p.x = x;
     p.y = y;
-    p.color = this->state[y][x];
+    p.color = this->state[y * this->height + x];
 
     return p;
 }

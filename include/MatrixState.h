@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <vector>
+#include <stdlib.h>
 
 #include "PixelState.h"
 
@@ -17,5 +18,5 @@ public:
 
 private:
     const uint16_t width, height;
-    std::vector<std::vector<Color>> state;
+    Color *state;
 };
